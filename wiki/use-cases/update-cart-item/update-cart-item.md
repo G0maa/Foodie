@@ -20,30 +20,31 @@ Customer
 1. Customer updates an item in the cart (with quantity and options).
 2. System verifies the restaurant is open.
 3. System verifies the item is in stock for the requested quantity.
-4. System updates the `CartItem` and recalculates totals.
+4. System verifies if item already exists (same options), merges items.
+5. System updates the `CartItem` and recalculates totals.
 
 ## Exception Flows
 
 Each branch is labelled by the Main Flow step it extends.
 
+- **1a. Zero quantity:** remove item from cart.
 - **2a. Restaurant is closed:** reject — "Restaurant is closed".
 - **3a. Item is out of stock:** reject — "Item is not in stock".
 
 ## Postconditions
 
 1. `CartItem` is updated in `Cart`.
-2. Totals are recalculated.
+2. No duplicate items.
+3. Zero quantity items are deleted.
+4. Totals are recalculated.
 
 ## Diagram
 
-1. Flowchart
-2. Sequence Diagram
-3. Pseudocode
+1. [Flowchart](images/flowchart.png)
+2. [Sequence Diagram](images/sequence-diagram.png)
+3. [Pseudocode](images/pseduocode.txt)
 
 # Notes
 - src: Claude.
-1. Does update include remove (qty → 0)?
-2. Option change can collide with the uniqueness key. Editing options may make `(item + options)` match an existing line (e.g. "Burger [no onions]" → "[extra cheese]" when that line already exists). Add an exception flow — merge quantities or reject.
-3. Stock check should only gate an increase. Step 3 currently verifies stock unconditionally; lowering the quantity (or removing) must not be blocked by stock. Only check stock for the added delta when qty increases.
-4. Restaurant-open check on edits? Blocking cart *edits* while the restaurant is closed is debatable — the open-check arguably belongs at checkout. Decide consciously rather than inheriting it from `add-cart-item`.
-5. Postconditions must mirror the decisions above (line removed if qty→0, lines merged on option collision).
+1. Stock check should only gate an increase. Step 3 currently verifies stock unconditionally; lowering the quantity (or removing) must not be blocked by stock. Only check stock for the added delta when qty increases.
+2. Restaurant-open check on edits? Blocking cart edits while the restaurant is closed is debatable — the open-check arguably belongs at checkout. Decide consciously rather than inheriting it from `add-cart-item`.

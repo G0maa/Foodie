@@ -43,9 +43,9 @@ Each branch is labelled by the Main Flow step it extends.
 
 ## Diagram
 
-1. Flowchart
-2. Sequence Diagram
-3. Pseudocode
+1. [Flowchart](images/flowchart.png)
+2. [Sequence Diagram](images/sequence-diagram.png)
+3. [Pseudocode](images/pseduocode.txt)
 
 # Notes
 
