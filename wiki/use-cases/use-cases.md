@@ -9,8 +9,8 @@ _Owner: TODO · Last reviewed: TODO_
 ## Index
 
 ### Cart
-- [Add Cart Item](./add-item-to-cart/add-cart-item.md)
+- [Add Cart Item](./add-cart-item/add-cart-item.md)
 - [Update Cart Item](./update-cart-item/update-cart-item.md)
 
 
-<!-- Naming convention: uc-NN-short-slug.md -->
+<!-- Naming convention: <slug>/<slug>.md (e.g. add-cart-item/add-cart-item.md) -->
