@@ -30,3 +30,4 @@ Directory where all Foodie documentation lives. This is the entry point — star
 
 ## Notes
 1. Structure is subject to change.
+2. Reusable skeletons live in [`_templates/`](./_templates/) (epic / issue / task) and [`use-cases/_use-case-template.md`](./use-cases/_use-case-template.md).

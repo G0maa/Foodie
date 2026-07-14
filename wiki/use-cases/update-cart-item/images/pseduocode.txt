@@ -1,0 +1,69 @@
+class UpdateCartItemController {
+    constructor( useCase: UpdateCartItemUseCase) {}
+
+    @AuthDecorators
+    @ApiDecorators
+    handle(command: UpdateCartItemCommand) {
+        return this.useCase.execute(command);
+    }
+}
+
+
+class UpdateCartItemUseCase {
+
+    constructor(restaurantService: RestaurantService, cartService: CartService, repository: UpdateCartItemRepository) {}
+
+    execute(command: UpdateCartItemCommand, userUuid) {
+
+        // error if anything fails
+        restaurantService.isRestaurantOpen(command.restaurantId)
+        restaurantService.isItemAvailable(command.itemId)
+
+        // error if a cart already exists => prompt to clear cart first
+        cartService.verifyCartExists(command.cartId)
+        repository.updateCartItem(command, userUuid)
+        cartService.mergeItems()
+        cartService.deleteZeroQuantityItems()
+        cartService.recalculateTotals()
+
+        return
+
+    }
+}
+
+
+// Shared classes between use-cases (may or may not exist in actual code, depending on how shared are the functions)
+// architecutre is:
+// modules
+//      Cart
+//        Services
+//              CartService
+//              CartServiceRepositry
+//          UseCases
+//              AddCartItem
+class CartService {
+    verifyCartExists(cartId: string) {
+        
+    }
+    
+    mergeItems() {
+        
+    }
+    
+    recalculateTotals() {
+        
+    }
+}
+
+class RestaurantService {
+
+}
+
+// each service will have a repository
+class RestaurantServiceRepositry {
+
+}
+
+class CartServiceRepository {
+
+}
