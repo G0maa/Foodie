@@ -44,6 +44,9 @@ Each branch is labelled by the Main Flow step it extends.
 2. [Sequence Diagram](images/sequence-diagram.png)
 3. [Pseudocode](images/pseduocode.txt)
 
+# Time Estimate
+1. 4 hours.
+
 # Notes
 - src: Claude.
 1. Stock check should only gate an increase. Step 3 currently verifies stock unconditionally; lowering the quantity (or removing) must not be blocked by stock. Only check stock for the added delta when qty increases.
